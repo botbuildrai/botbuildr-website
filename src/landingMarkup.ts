@@ -21,6 +21,7 @@ export const landingMarkup = `<!-- NAV -->
         data-src="/assets/botbuildr-iss-hero.mp4"
         muted
         playsinline
+        webkit-playsinline=""
         preload="auto"
         aria-hidden="true"
       ></video>

@@ -27,13 +27,60 @@ function isMobileViewport() {
   )
 }
 
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+}
+
 function viewportHeight() {
   return window.visualViewport?.height ?? window.innerHeight
 }
 
-function loadHeroVideo(video: HTMLVideoElement) {
+function configureVideoElement(video: HTMLVideoElement) {
+  video.muted = true
+  video.defaultMuted = true
+  video.playsInline = true
+  video.setAttribute('playsinline', '')
+  video.setAttribute('webkit-playsinline', '')
+  video.setAttribute('preload', 'auto')
+  video.style.display = 'block'
+}
+
+async function primeVideoForScrub(video: HTMLVideoElement) {
+  configureVideoElement(video)
+  try {
+    await video.play()
+    video.pause()
+    video.currentTime = 0
+    return true
+  } catch {
+    return new Promise<boolean>((resolve) => {
+      const onTouch = async () => {
+        document.removeEventListener('touchstart', onTouch, true)
+        try {
+          await video.play()
+          video.pause()
+          video.currentTime = 0
+          resolve(true)
+        } catch {
+          resolve(false)
+        }
+      }
+      document.addEventListener('touchstart', onTouch, { once: true, passive: true, capture: true })
+    })
+  }
+}
+
+function loadHeroVideo(video: HTMLVideoElement, mobile: boolean) {
   const src = '/assets/botbuildr-iss-hero.mp4'
   video.removeAttribute('src')
+
+  // Mobile: direct URL loads faster and iOS range-seeks better than waiting for full blob
+  if (mobile) {
+    video.src = src
+    return Promise.resolve()
+  }
+
   return fetch(src)
     .then((r) => r.blob())
     .then((blob) => {
@@ -42,6 +89,18 @@ function loadHeroVideo(video: HTMLVideoElement) {
     .catch(() => {
       video.src = src
     })
+}
+
+function seekVideo(video: HTMLVideoElement, time: number) {
+  try {
+    if (typeof video.fastSeek === 'function') {
+      video.fastSeek(time)
+    } else {
+      video.currentTime = time
+    }
+  } catch {
+    /* noop */
+  }
 }
 
 function initScrollVideo(reduceMotion: boolean) {
@@ -53,7 +112,8 @@ function initScrollVideo(reduceMotion: boolean) {
   const mobile = isMobileViewport()
   const poster = section.querySelector<HTMLElement>('.hero-poster, [data-hero-poster], img[id*="poster"]')
   if (poster) poster.style.display = 'none'
-  video.style.display = 'block'
+
+  configureVideoElement(video)
 
   const syncHeight = () => {
     if (reduceMotion) {
@@ -66,51 +126,39 @@ function initScrollVideo(reduceMotion: boolean) {
   }
   syncHeight()
 
-  void loadHeroVideo(video)
-
-  try {
-    video.pause()
-  } catch {
-    /* noop */
-  }
-  video.currentTime = 0
-
   let duration = 0
   let targetTime = 0
   let currentTime = 0
   let rafId: number | null = null
-  const scrubEase = mobile ? 0.32 : 0.22
+  let ready = false
+  const scrubEase = mobile ? 0.42 : 0.22
 
   const computeProgress = () => {
-    const rect = section.getBoundingClientRect()
-    const total = section.offsetHeight - viewportHeight()
+    const vh = viewportHeight()
+    const scrollY = window.scrollY || document.documentElement.scrollTop
+    const sectionTop = section.offsetTop
+    const total = section.offsetHeight - vh
     if (total <= 0) return 0
-    return Math.min(1, Math.max(0, -rect.top / total))
+    const scrolled = scrollY - sectionTop
+    return Math.min(1, Math.max(0, scrolled / total))
   }
 
   const tick = () => {
     rafId = null
+    if (!ready) return
     const diff = targetTime - currentTime
     if (Math.abs(diff) > 0.005) {
       currentTime += diff * scrubEase
-      try {
-        video.currentTime = currentTime
-      } catch {
-        /* noop */
-      }
+      seekVideo(video, currentTime)
       rafId = requestAnimationFrame(tick)
     } else {
       currentTime = targetTime
-      try {
-        video.currentTime = currentTime
-      } catch {
-        /* noop */
-      }
+      seekVideo(video, currentTime)
     }
   }
 
   const update = () => {
-    if (reduceMotion) return
+    if (reduceMotion || !ready) return
 
     const p = computeProgress()
     if (duration > 0) targetTime = p * duration
@@ -123,27 +171,23 @@ function initScrollVideo(reduceMotion: boolean) {
     if (rafId == null) rafId = requestAnimationFrame(tick)
   }
 
-  const onMeta = () => {
+  const onReady = async () => {
     duration = Math.max(0.001, video.duration || 0)
-    try {
-      video.pause()
-    } catch {
-      /* noop */
-    }
 
     if (reduceMotion) {
-      window.removeEventListener('scroll', update)
       section.style.height = '100vh'
-      try {
-        video.pause()
-        video.currentTime = Math.max(0, duration - 0.08)
-      } catch {
-        /* noop */
-      }
+      seekVideo(video, Math.max(0, duration - 0.08))
       return
     }
 
+    if (mobile || isIOS()) {
+      await primeVideoForScrub(video)
+    }
+
+    video.pause()
     video.currentTime = 0
+    currentTime = 0
+    ready = true
     update()
   }
 
@@ -152,20 +196,30 @@ function initScrollVideo(reduceMotion: boolean) {
     update()
   }
 
-  video.addEventListener('loadedmetadata', onMeta)
+  void loadHeroVideo(video, mobile).then(() => {
+    if (video.readyState >= 1) void onReady()
+    else video.addEventListener('loadedmetadata', () => void onReady(), { once: true })
+  })
+
   window.addEventListener('scroll', update, { passive: true })
   window.addEventListener('resize', onResize)
   window.visualViewport?.addEventListener('resize', onResize)
+  window.visualViewport?.addEventListener('scroll', update, { passive: true })
 
-  if (!reduceMotion) update()
+  if (mobile) {
+    window.addEventListener('touchmove', update, { passive: true })
+  }
 
   return () => {
-    video.removeEventListener('loadedmetadata', onMeta)
+    video.removeEventListener('loadedmetadata', onReady)
     window.removeEventListener('scroll', update)
+    window.removeEventListener('touchmove', update)
     window.removeEventListener('resize', onResize)
     window.visualViewport?.removeEventListener('resize', onResize)
+    window.visualViewport?.removeEventListener('scroll', update)
     if (rafId != null) cancelAnimationFrame(rafId)
     section.style.height = ''
+    ready = false
   }
 }
 

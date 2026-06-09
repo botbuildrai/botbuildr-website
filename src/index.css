@@ -120,6 +120,8 @@
     object-position: center 42%;
     display: block;
     will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   /* Bottom gradient blend — Earth horizon → white, seamless into hero headline */
   .video-hero-pin::after {
