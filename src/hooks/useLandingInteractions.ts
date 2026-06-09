@@ -21,7 +21,14 @@ function countUp(el: HTMLElement, reduce: boolean) {
 }
 
 function isMobileViewport() {
-  return window.matchMedia('(max-width: 767px)').matches
+  return (
+    document.documentElement.clientWidth <= 767 ||
+    window.matchMedia('(max-width: 767px)').matches
+  )
+}
+
+function viewportHeight() {
+  return window.visualViewport?.height ?? window.innerHeight
 }
 
 function loadHeroVideo(video: HTMLVideoElement) {
@@ -37,39 +44,27 @@ function loadHeroVideo(video: HTMLVideoElement) {
     })
 }
 
-function initMobileHero(section: HTMLElement, video: HTMLVideoElement) {
-  section.classList.add('video-hero--scrollable')
-  section.style.height = 'auto'
-
-  void loadHeroVideo(video).then(() => {
-    const freeze = () => {
-      const end = Math.max(0, (video.duration || 0) - 0.08)
-      try {
-        video.pause()
-        video.currentTime = end
-      } catch {
-        /* noop */
-      }
-    }
-    if (video.readyState >= 1) freeze()
-    else video.addEventListener('loadedmetadata', freeze, { once: true })
-  })
-
-  return () => {
-    section.classList.remove('video-hero--scrollable')
-    section.style.height = ''
-  }
-}
-
 function initScrollVideo(reduceMotion: boolean) {
   const section = document.getElementById('video-hero')
   const video = document.getElementById('hero-motion') as HTMLVideoElement | null
   const hint = document.getElementById('video-hero-hint')
   if (!section || !video) return
 
-  if (isMobileViewport() || reduceMotion) {
-    return initMobileHero(section, video)
+  const mobile = isMobileViewport()
+  const poster = section.querySelector<HTMLElement>('.hero-poster, [data-hero-poster], img[id*="poster"]')
+  if (poster) poster.style.display = 'none'
+  video.style.display = 'block'
+
+  const syncHeight = () => {
+    if (reduceMotion) {
+      section.style.height = '100vh'
+    } else if (mobile) {
+      section.style.height = '300vh'
+    } else {
+      section.style.height = ''
+    }
   }
+  syncHeight()
 
   void loadHeroVideo(video)
 
@@ -84,10 +79,11 @@ function initScrollVideo(reduceMotion: boolean) {
   let targetTime = 0
   let currentTime = 0
   let rafId: number | null = null
+  const scrubEase = mobile ? 0.32 : 0.22
 
   const computeProgress = () => {
     const rect = section.getBoundingClientRect()
-    const total = section.offsetHeight - window.innerHeight
+    const total = section.offsetHeight - viewportHeight()
     if (total <= 0) return 0
     return Math.min(1, Math.max(0, -rect.top / total))
   }
@@ -96,7 +92,7 @@ function initScrollVideo(reduceMotion: boolean) {
     rafId = null
     const diff = targetTime - currentTime
     if (Math.abs(diff) > 0.005) {
-      currentTime += diff * 0.22
+      currentTime += diff * scrubEase
       try {
         video.currentTime = currentTime
       } catch {
@@ -114,6 +110,8 @@ function initScrollVideo(reduceMotion: boolean) {
   }
 
   const update = () => {
+    if (reduceMotion) return
+
     const p = computeProgress()
     if (duration > 0) targetTime = p * duration
 
@@ -132,19 +130,42 @@ function initScrollVideo(reduceMotion: boolean) {
     } catch {
       /* noop */
     }
+
+    if (reduceMotion) {
+      window.removeEventListener('scroll', update)
+      section.style.height = '100vh'
+      try {
+        video.pause()
+        video.currentTime = Math.max(0, duration - 0.08)
+      } catch {
+        /* noop */
+      }
+      return
+    }
+
     video.currentTime = 0
+    update()
+  }
+
+  const onResize = () => {
+    syncHeight()
     update()
   }
 
   video.addEventListener('loadedmetadata', onMeta)
   window.addEventListener('scroll', update, { passive: true })
-  window.addEventListener('resize', update)
+  window.addEventListener('resize', onResize)
+  window.visualViewport?.addEventListener('resize', onResize)
+
+  if (!reduceMotion) update()
 
   return () => {
     video.removeEventListener('loadedmetadata', onMeta)
     window.removeEventListener('scroll', update)
-    window.removeEventListener('resize', update)
+    window.removeEventListener('resize', onResize)
+    window.visualViewport?.removeEventListener('resize', onResize)
     if (rafId != null) cancelAnimationFrame(rafId)
+    section.style.height = ''
   }
 }
 

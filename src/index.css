@@ -163,22 +163,30 @@
   @media (prefers-reduced-motion: reduce) {
     .video-hero-hint .chev { animation: none; }
   }
-  /* Mobile: scrollable hero (no sticky pin, no scroll-trap) */
+  @media (min-width: 768px) {
+    .video-hero-poster { display: none; }
+  }
+
+  /* Mobile: same scroll-scrub journey as desktop (ISS → Earth), shorter scroll distance */
   @media (max-width: 767px) {
-    .video-hero {
-      height: auto;
-      min-height: 0;
-    }
+    .video-hero { height: 300vh; }
     .video-hero-pin {
-      position: relative;
-      top: auto;
+      position: sticky;
+      top: 0;
       height: 100dvh;
-      min-height: 480px;
-      max-height: 900px;
     }
     .video-hero-pin::after { height: 28vh; }
-    .video-hero video { object-position: center 38%; }
-    .video-hero-hint { display: none; }
+    .video-hero video {
+      display: block !important;
+      object-position: center 40%;
+    }
+    .video-hero .hero-poster,
+    .video-hero img[data-hero-poster],
+    .video-hero #hero-poster { display: none !important; }
+    .video-hero-hint {
+      bottom: max(20px, env(safe-area-inset-bottom));
+      font-size: 10px;
+    }
   }
 
   /* Editorial hero entrance — subtle fade + 16px rise as we enter from the video */
