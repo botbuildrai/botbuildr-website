@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/casacapital", "destination": "/casacapital/" },
+    { "source": "/casacapital/", "destination": "/casacapital/index.html" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
