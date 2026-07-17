@@ -25,7 +25,9 @@ export type LeadsDbModule = {
     testKey: string,
     options: { agent: string },
   ) => Promise<{ variant_key: string }>
-  getLead: (idOrEmail: number | string) => Promise<{ enrichment?: unknown } | null>
+  getLead: (idOrEmail: number | string) => Promise<{ enrichment?: unknown; status?: string; email?: string } | null>
+  /** Read-only suppression-list check (botbuildr.suppression) — used to gate sends before Resend. */
+  isEmailSuppressed: (email: string) => Promise<boolean>
   recordEmailEvent: (params: {
     leadId?: number | null
     eventType: 'open' | 'click'

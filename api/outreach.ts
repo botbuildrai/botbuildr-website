@@ -10,6 +10,7 @@ import {
 } from './lib/outreach-template.js'
 import { resolveVariantsForLead } from './lib/outreach-ab.js'
 import { buildOpenPixelUrl, wrapClickUrl } from './lib/tracking-links.js'
+import { loadLeadsDb } from './lib/leads-db-bridge.js'
 
 type OutreachAttachment = {
   filename: string
@@ -74,6 +75,30 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!to) {
     return res.status(400).json({ error: 'Missing to' })
+  }
+
+  // Suppression / opt-out gate — best-effort, same degrade-to-no-op contract
+  // as the rest of leads-db-bridge (see that file's header): only active
+  // when DATABASE_URL is configured, and a bridge/DB error fails open (logs
+  // + continues) rather than blocking mail entirely on an infra hiccup. A
+  // successful lookup that finds a suppression/opt-out match always blocks
+  // the send — this is a compliance gate, not just an A/B nicety.
+  const leadsDb = await loadLeadsDb()
+  if (leadsDb) {
+    try {
+      const suppressed = await leadsDb.isEmailSuppressed(to)
+      if (suppressed) {
+        return res.status(403).json({ error: 'Email is suppressed (opt-out) — refusing to send' })
+      }
+      if (leadId) {
+        const lead = await leadsDb.getLead(leadId)
+        if (lead?.status === 'NIET_BENADEREN') {
+          return res.status(403).json({ error: 'Lead status is NIET_BENADEREN — refusing to send' })
+        }
+      }
+    } catch (err) {
+      console.error('[outreach] suppression check failed — failing open (best-effort bridge):', err)
+    }
   }
 
   let subject = String(body.subject || '').trim()
