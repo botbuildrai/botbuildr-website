@@ -13,7 +13,7 @@ site/
 ├── public/assets/botbuildr-iss-hero.mp4   # scroll-scrub hero video
 ├── src/
 │   ├── index.css                          # full design system + layout from Claude Design export
-│   ├── landingMarkup.ts                 # editorial landing HTML (handoff source of truth)
+│   ├── landingMarkup.ts                 # Klusbedrijven landing HTML (Claude Design handoff)
 │   ├── hooks/useLandingInteractions.ts  # scroll video, reveals, stat counters
 │   └── App.tsx
 └── ../design.md                           # brand source of truth

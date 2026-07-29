@@ -1,11 +1,21 @@
 import { useEffect } from 'react'
 
+function fmt(v: number, dec: number) {
+  return dec ? v.toFixed(dec) : Math.round(v).toString()
+}
+
+function setFinal(el: HTMLElement) {
+  el.textContent =
+    fmt(parseFloat(el.dataset.count || '0'), parseInt(el.dataset.dec || '0', 10)) +
+    (el.dataset.suffix || '')
+}
+
 function countUp(el: HTMLElement, reduce: boolean) {
   const target = parseFloat(el.dataset.count || '0')
   const dec = parseInt(el.dataset.dec || '0', 10)
-  const suffix = el.dataset.suffix || ''
-  if (reduce) {
-    el.textContent = target.toFixed(dec) + suffix
+  const suf = el.dataset.suffix || ''
+  if (reduce || !document.documentElement.classList.contains('animate')) {
+    setFinal(el)
     return
   }
   const dur = 1100
@@ -13,270 +23,213 @@ function countUp(el: HTMLElement, reduce: boolean) {
   const frame = (now: number) => {
     const p = Math.min((now - t0) / dur, 1)
     const eased = 1 - Math.pow(1 - p, 3)
-    el.textContent = (target * eased).toFixed(dec) + suffix
+    el.textContent = fmt(target * eased, dec) + suf
     if (p < 1) requestAnimationFrame(frame)
-    else el.textContent = target.toFixed(dec) + suffix
+    else setFinal(el)
   }
   requestAnimationFrame(frame)
 }
 
-function isMobileViewport() {
-  return (
-    document.documentElement.clientWidth <= 767 ||
-    window.matchMedia('(max-width: 767px)').matches
-  )
-}
-
-function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-}
-
-function viewportHeight() {
-  return window.visualViewport?.height ?? window.innerHeight
-}
-
-function configureVideoElement(video: HTMLVideoElement) {
-  video.muted = true
-  video.defaultMuted = true
-  video.playsInline = true
-  video.setAttribute('playsinline', '')
-  video.setAttribute('webkit-playsinline', '')
-  video.setAttribute('preload', 'auto')
-  video.style.display = 'block'
-}
-
-async function primeVideoForScrub(video: HTMLVideoElement) {
-  configureVideoElement(video)
-  try {
-    await video.play()
-    video.pause()
-    video.currentTime = 0
-    return true
-  } catch {
-    return new Promise<boolean>((resolve) => {
-      const onTouch = async () => {
-        document.removeEventListener('touchstart', onTouch, true)
-        try {
-          await video.play()
-          video.pause()
-          video.currentTime = 0
-          resolve(true)
-        } catch {
-          resolve(false)
-        }
-      }
-      document.addEventListener('touchstart', onTouch, { once: true, passive: true, capture: true })
-    })
-  }
-}
-
-function loadHeroVideo(video: HTMLVideoElement, mobile: boolean) {
-  const src = '/assets/botbuildr-iss-hero.mp4'
-  video.removeAttribute('src')
-
-  // Mobile: direct URL loads faster and iOS range-seeks better than waiting for full blob
-  if (mobile) {
-    video.src = src
-    return Promise.resolve()
-  }
-
-  return fetch(src)
-    .then((r) => r.blob())
-    .then((blob) => {
-      video.src = URL.createObjectURL(blob)
-    })
-    .catch(() => {
-      video.src = src
-    })
-}
-
-function seekVideo(video: HTMLVideoElement, time: number) {
-  try {
-    if (typeof video.fastSeek === 'function') {
-      video.fastSeek(time)
-    } else {
-      video.currentTime = time
-    }
-  } catch {
-    /* noop */
-  }
-}
-
-function initScrollVideo(reduceMotion: boolean) {
-  const section = document.getElementById('video-hero')
-  const video = document.getElementById('hero-motion') as HTMLVideoElement | null
-  const hint = document.getElementById('video-hero-hint')
-  if (!section || !video) return
-
-  const mobile = isMobileViewport()
-  const poster = section.querySelector<HTMLElement>('.hero-poster, [data-hero-poster], img[id*="poster"]')
-  if (poster) poster.style.display = 'none'
-
-  configureVideoElement(video)
-
-  const syncHeight = () => {
-    if (reduceMotion) {
-      section.style.height = '100vh'
-    } else if (mobile) {
-      section.style.height = '300vh'
-    } else {
-      section.style.height = ''
-    }
-  }
-  syncHeight()
-
-  let duration = 0
-  let targetTime = 0
-  let currentTime = 0
-  let rafId: number | null = null
-  let ready = false
-  const scrubEase = mobile ? 0.42 : 0.22
-
-  const computeProgress = () => {
-    const vh = viewportHeight()
-    const scrollY = window.scrollY || document.documentElement.scrollTop
-    const sectionTop = section.offsetTop
-    const total = section.offsetHeight - vh
-    if (total <= 0) return 0
-    const scrolled = scrollY - sectionTop
-    return Math.min(1, Math.max(0, scrolled / total))
-  }
-
-  const tick = () => {
-    rafId = null
-    if (!ready) return
-    const diff = targetTime - currentTime
-    if (Math.abs(diff) > 0.005) {
-      currentTime += diff * scrubEase
-      seekVideo(video, currentTime)
-      rafId = requestAnimationFrame(tick)
-    } else {
-      currentTime = targetTime
-      seekVideo(video, currentTime)
-    }
-  }
-
-  const update = () => {
-    if (reduceMotion || !ready) return
-
-    const p = computeProgress()
-    if (duration > 0) targetTime = p * duration
-
-    if (hint) {
-      const h = p < 0.6 ? 1 : Math.max(0, 1 - (p - 0.6) / 0.2)
-      hint.style.opacity = String(h)
-    }
-
-    if (rafId == null) rafId = requestAnimationFrame(tick)
-  }
-
-  const onReady = async () => {
-    duration = Math.max(0.001, video.duration || 0)
-
-    if (reduceMotion) {
-      section.style.height = '100vh'
-      seekVideo(video, Math.max(0, duration - 0.08))
-      return
-    }
-
-    if (mobile || isIOS()) {
-      await primeVideoForScrub(video)
-    }
-
-    video.pause()
-    video.currentTime = 0
-    currentTime = 0
-    ready = true
-    update()
-  }
-
-  const onResize = () => {
-    syncHeight()
-    update()
-  }
-
-  void loadHeroVideo(video, mobile).then(() => {
-    if (video.readyState >= 1) void onReady()
-    else video.addEventListener('loadedmetadata', () => void onReady(), { once: true })
-  })
-
-  window.addEventListener('scroll', update, { passive: true })
-  window.addEventListener('resize', onResize)
-  window.visualViewport?.addEventListener('resize', onResize)
-  window.visualViewport?.addEventListener('scroll', update, { passive: true })
-
-  if (mobile) {
-    window.addEventListener('touchmove', update, { passive: true })
-  }
-
-  return () => {
-    video.removeEventListener('loadedmetadata', onReady)
-    window.removeEventListener('scroll', update)
-    window.removeEventListener('touchmove', update)
-    window.removeEventListener('resize', onResize)
-    window.visualViewport?.removeEventListener('resize', onResize)
-    window.visualViewport?.removeEventListener('scroll', update)
-    if (rafId != null) cancelAnimationFrame(rafId)
-    section.style.height = ''
-    ready = false
-  }
+function resetCount(el: HTMLElement) {
+  el.textContent = '0' + (el.dataset.suffix || '')
 }
 
 export function useLandingInteractions() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-    const cleanupVideo = initScrollVideo(reduce)
-
-    const hero = document.querySelector('.hero.video-handoff')
-    let heroObs: IntersectionObserver | undefined
-    if (hero) {
-      heroObs = new IntersectionObserver(
-        (es) => {
-          es.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('in')
-              heroObs?.disconnect()
-            }
-          })
-        },
-        { threshold: 0.15 },
-      )
-      heroObs.observe(hero)
-    }
-
-    const statObs = new IntersectionObserver(
-      (es) => {
-        es.forEach((e) => {
-          if (e.isIntersecting) {
-            countUp(e.target as HTMLElement, reduce)
-            statObs.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.6 },
-    )
-    document.querySelectorAll('[data-count]').forEach((el) => statObs.observe(el))
+    const root = document.documentElement
+    root.lang = 'nl'
 
     const revObs = new IntersectionObserver(
       (es) => {
+        es.forEach((e) => e.target.classList.toggle('in', e.isIntersecting))
+      },
+      { threshold: 0.25, rootMargin: '0px 0px -8% 0px' },
+    )
+
+    const cntObs = new IntersectionObserver(
+      (es) => {
         es.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in')
-            revObs.unobserve(e.target)
-          }
+          const el = e.target as HTMLElement
+          if (e.isIntersecting) countUp(el, reduce)
+          else if (root.classList.contains('animate')) resetCount(el)
         })
       },
-      { threshold: 0.12 },
+      { threshold: 0.45 },
     )
-    document.querySelectorAll('.reveal').forEach((el) => revObs.observe(el))
+
+    const initObservers = () => {
+      document.querySelectorAll('.reveal, .stag, .bars, .curve').forEach((el) => revObs.observe(el))
+      document.querySelectorAll('[data-count]').forEach((el) => cntObs.observe(el))
+    }
+
+    const hint = document.getElementById('scrollHint')
+    let hidden = false
+    const onScroll = () => {
+      if (!hidden && window.scrollY > 60) {
+        hint?.classList.add('gone')
+        hidden = true
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    let settled = false
+    const probe = document.createElement('div')
+    probe.style.cssText =
+      'position:fixed;left:-9999px;top:0;width:1px;height:1px;pointer-events:none;'
+    probe.style.animation = 'probe-fire .04s linear'
+
+    const finish = (animate: boolean) => {
+      if (settled) return
+      settled = true
+      if (animate) root.classList.add('animate')
+      else document.querySelectorAll('[data-count]').forEach((el) => setFinal(el as HTMLElement))
+      try {
+        probe.remove()
+      } catch {
+        /* noop */
+      }
+      initObservers()
+    }
+
+    if (reduce) {
+      document.querySelectorAll('[data-count]').forEach((el) => setFinal(el as HTMLElement))
+      initObservers()
+    } else {
+      probe.addEventListener('animationend', () => finish(true), { once: true })
+      document.body.appendChild(probe)
+      setTimeout(() => finish(false), 500)
+    }
+
+    document.title = 'BotBuildr.ai — Nooit meer een gemiste klant'
+
+    // stamboom / org chart interaction
+    const EXAMPLES: Record<
+      string,
+      { label: string; incoming: { who: string; text: string }; reply: { who: string; text: string } }
+    > = {
+      a: {
+        label: 'klantenservice-agent · binnenkomend bericht',
+        incoming: { who: 'WhatsApp — klant', text: 'Kunnen jullie deze week nog een lekkage repareren?' },
+        reply: {
+          who: 'BotBuildr — direct verstuurd',
+          text: 'Ja, donderdagochtend hebben we nog ruimte. Zullen we 8:00 uur inplannen? Stuur je een foto van de lekkage door?',
+        },
+      },
+      b: {
+        label: 'aanvragen-agent · binnenkomend bericht',
+        incoming: {
+          who: 'Contactformulier — klant',
+          text: 'Wij willen een offerte voor een dakkapel. Adres: Kerkstraat 12.',
+        },
+        reply: {
+          who: 'BotBuildr — direct verstuurd',
+          text: 'Bedankt voor je aanvraag! Kun je 2–3 foto’s van het dak sturen? Dan heb je binnen 2 werkdagen een offerte in je mail.',
+        },
+      },
+      c: {
+        label: 'opvolg-agent · automatische check',
+        incoming: { who: 'Systeem', text: 'Offerte #482 — verstuurd 3 dagen geleden, nog geen reactie.' },
+        reply: {
+          who: 'BotBuildr — automatisch opgevolgd',
+          text: 'Hoi! We hoorden nog niets terug over de offerte van dinsdag — nog vragen, of zullen we een datum inplannen?',
+        },
+      },
+    }
+
+    const org = document.querySelector('.org')
+    const dot = document.getElementById('orgDot')
+    const detail = document.getElementById('orgDetail')
+    const owner = document.querySelector('.org-owner')
+    let orgRunning = false
+
+    const moveDot = (x: number, y: number) => {
+      if (dot) {
+        dot.style.left = `${x}px`
+        dot.style.top = `${y}px`
+      }
+    }
+
+    const flowInto = (nodeEl: HTMLElement, key: string) => {
+      if (!org || !dot || !detail || !owner || orgRunning) return
+      orgRunning = true
+      document.querySelectorAll('.org-node').forEach((n) => n.classList.remove('active'))
+      nodeEl.classList.add('active')
+
+      const cRect = org.getBoundingClientRect()
+      const oRect = owner.getBoundingClientRect()
+      const nRect = nodeEl.getBoundingClientRect()
+      const start = { x: oRect.left + oRect.width / 2 - cRect.left, y: oRect.bottom - cRect.top }
+      const mid = {
+        x: nRect.left + nRect.width / 2 - cRect.left,
+        y: (oRect.bottom + nRect.top) / 2 - cRect.top,
+      }
+      const end = { x: nRect.left + nRect.width / 2 - cRect.left, y: nRect.top - cRect.top + 6 }
+
+      dot.style.display = 'block'
+      moveDot(start.x, start.y)
+
+      const showResult = () => {
+        const ex = EXAMPLES[key]
+        if (!ex) return
+        detail.classList.remove('empty')
+        detail.innerHTML =
+          `<div class="od-lbl">// ${ex.label}</div>` +
+          '<div class="od-msg">' +
+          `<div class="od-bubble"><span class="who">${ex.incoming.who}</span>${ex.incoming.text}</div>` +
+          `<div class="od-bubble reply"><span class="who">${ex.reply.who}</span>${ex.reply.text}</div>` +
+          '</div>'
+      }
+
+      if (reduce || !root.classList.contains('animate')) {
+        dot.style.display = 'none'
+        nodeEl.classList.add('pulse')
+        showResult()
+        setTimeout(() => {
+          nodeEl.classList.remove('pulse')
+          orgRunning = false
+        }, 500)
+        return
+      }
+
+      const anim = dot.animate(
+        [
+          { left: `${start.x}px`, top: `${start.y}px`, opacity: 1 },
+          { left: `${mid.x}px`, top: `${mid.y}px`, opacity: 1 },
+          { left: `${end.x}px`, top: `${end.y}px`, opacity: 1 },
+        ],
+        { duration: 700, easing: 'cubic-bezier(.2,0,0,1)' },
+      )
+      anim.onfinish = () => {
+        dot.style.display = 'none'
+        nodeEl.classList.add('pulse')
+        showResult()
+        setTimeout(() => {
+          nodeEl.classList.remove('pulse')
+          orgRunning = false
+        }, 500)
+      }
+    }
+
+    const orgNodes = document.querySelectorAll<HTMLElement>('.org-node')
+    const onOrgClick = (e: Event) => {
+      const node = e.currentTarget as HTMLElement
+      const key = node.dataset.node
+      if (key) flowInto(node, key)
+    }
+    orgNodes.forEach((node) => node.addEventListener('click', onOrgClick))
 
     return () => {
-      cleanupVideo?.()
-      heroObs?.disconnect()
-      statObs.disconnect()
+      orgNodes.forEach((node) => node.removeEventListener('click', onOrgClick))
       revObs.disconnect()
+      cntObs.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      try {
+        probe.remove()
+      } catch {
+        /* noop */
+      }
+      root.classList.remove('animate')
     }
   }, [])
 }
