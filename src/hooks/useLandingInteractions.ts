@@ -101,7 +101,7 @@ export function useLandingInteractions() {
       setTimeout(() => finish(false), 500)
     }
 
-    document.title = 'BotBuildr.ai — Nooit meer een gemiste klant'
+    document.title = 'BotBuildr.ai — Klantcontact op autopilot'
 
     // stamboom / org chart interaction
     const EXAMPLES: Record<
@@ -109,30 +109,30 @@ export function useLandingInteractions() {
       { label: string; incoming: { who: string; text: string }; reply: { who: string; text: string } }
     > = {
       a: {
-        label: 'klantenservice-agent · binnenkomend bericht',
-        incoming: { who: 'WhatsApp — klant', text: 'Kunnen jullie deze week nog een lekkage repareren?' },
+        label: 'klantenservice · binnenkomend bericht',
+        incoming: { who: 'WhatsApp — klant', text: 'Wat zijn jullie levertijden? Ik wil het deze week nog ontvangen.' },
         reply: {
           who: 'BotBuildr — direct verstuurd',
-          text: 'Ja, donderdagochtend hebben we nog ruimte. Zullen we 8:00 uur inplannen? Stuur je een foto van de lekkage door?',
+          text: 'Hoi! Standaard leveren we binnen 2–3 werkdagen. Express kan morgen al. Zal ik dat voor je omzetten?',
         },
       },
       b: {
-        label: 'aanvragen-agent · binnenkomend bericht',
+        label: 'social media · binnenkomende DM',
         incoming: {
-          who: 'Contactformulier — klant',
-          text: 'Wij willen een offerte voor een dakkapel. Adres: Kerkstraat 12.',
+          who: 'Instagram DM — volger',
+          text: 'Hoi! Werken jullie ook met bedrijven buiten Nederland?',
         },
         reply: {
           who: 'BotBuildr — direct verstuurd',
-          text: 'Bedankt voor je aanvraag! Kun je 2–3 foto’s van het dak sturen? Dan heb je binnen 2 werkdagen een offerte in je mail.',
+          text: 'Ja hoor — we helpen klanten in NL en daarbuiten. Zal ik je doorzetten naar iemand die je even belt?',
         },
       },
       c: {
-        label: 'opvolg-agent · automatische check',
-        incoming: { who: 'Systeem', text: 'Offerte #482 — verstuurd 3 dagen geleden, nog geen reactie.' },
+        label: 'leads · automatische opvolging',
+        incoming: { who: 'Systeem', text: 'Lead "Strategy call" — formulier 3 dagen geleden, nog geen afspraak.' },
         reply: {
           who: 'BotBuildr — automatisch opgevolgd',
-          text: 'Hoi! We hoorden nog niets terug over de offerte van dinsdag — nog vragen, of zullen we een datum inplannen?',
+          text: 'Hoi! Je vroeg vorige week naar BotBuildr — nog vragen, of zal ik een strategy call van 30 min voor je openzetten?',
         },
       },
     }
