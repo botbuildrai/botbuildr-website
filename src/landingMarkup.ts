@@ -1,1 +1,331 @@
-export const landingMarkup = "<!-- NAV -->\n<div class=\"navwrap\">\n  <nav class=\"nav glass\">\n    <a href=\"#top\" class=\"logo\" aria-label=\"BotBuildr.ai home\">\n      <span class=\"logo-mark\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <rect x=\"9\" y=\"12\" width=\"22\" height=\"17\" rx=\"5\" stroke-width=\"1.8\"></rect>\n          <line x1=\"20\" y1=\"12\" x2=\"20\" y2=\"6\" stroke-width=\"1.8\"></line>\n          <circle cx=\"20\" cy=\"4\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <circle cx=\"15.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <circle cx=\"24.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <line x1=\"15\" y1=\"25.5\" x2=\"25\" y2=\"25.5\" stroke-width=\"1.8\"></line>\n        </svg>\n      </span>\n      <span>BotBuildr<span class=\"dotai\">.ai</span></span>\n    </a>\n    <div class=\"nav-links\">\n      <a href=\"#stamboom\" class=\"lk hide-sm\">hoe het werkt</a>\n      <a href=\"#rekening\" class=\"lk hide-sm\">prijs</a>\n      <a href=\"#waarom\" class=\"lk hide-sm\">waarom</a>\n      <a href=\"https://calendly.com/botbuildr-ai\" target=\"_blank\" rel=\"noopener\" class=\"nav-cta\"><span class=\"cta-full\">&gt; plan een kennismaking</span><span class=\"cta-short\">&gt; plan gesprek</span></a>\n    </div>\n  </nav>\n</div>\n\n<!-- HERO -->\n<a id=\"top\"></a>\n<section class=\"hero\">\n  <div class=\"wrap hero-grid\">\n    <div class=\"hero-stack stag\">\n      <span class=\"eyebrow\" style=\"--d:80ms;\">voor aannemers, installateurs, schilders &amp; dakdekkers</span>\n      <h1 style=\"--d:200ms;\">Jij op de bouwplaats. <span class=\"hl\">Wij op je computer.</span></h1>\n      <p class=\"lead\" style=\"--d:340ms;\">BotBuildr beantwoordt je mail en WhatsApp, maakt je facturen en beheert je agenda — ook als jij aan het werk bent. <b>Geen klant meer die wegloopt naar de concurrent</b> omdat niemand reageerde.</p>\n      <div class=\"hero-actions\" style=\"--d:480ms;\">\n        <a href=\"https://calendly.com/botbuildr-ai\" target=\"_blank\" rel=\"noopener\" class=\"btn btn-primary\">&gt; plan een kennismaking</a>\n        <a href=\"#stamboom\" class=\"btn btn-secondary\">&gt; bekijk hoe het werkt</a>\n      </div>\n      <div class=\"reassure\" style=\"--d:620ms;\">\n        <span><span class=\"dot\"></span> klinkt als jouw bedrijf — geen robot-gevoel</span>\n        <span><span class=\"dot\"></span> mail, WhatsApp, facturen, agenda, website &amp; social</span>\n        <span><span class=\"dot\"></span> vanaf €499 per maand · bouwen is gratis</span>\n      </div>\n    </div>\n    <div class=\"vs glass reveal\" aria-label=\"Zonder BotBuildr versus met BotBuildr\">\n      <div class=\"vs-side bad\">\n        <span class=\"vs-tag\">✕ zonder botbuildr</span>\n        <div><div class=\"vs-big\">43</div><div class=\"vs-sub\">onbeantwoorde berichten / week</div></div>\n        <div><div class=\"vs-big\">38u</div><div class=\"vs-sub\">tot een offerte de deur uit is</div></div>\n        <div class=\"vs-stars\">★☆☆☆☆</div>\n        <span class=\"vs-out\">klant gaat naar de concurrent →</span>\n      </div>\n      <div class=\"vs-side good\">\n        <span class=\"vs-tag\">✓ met botbuildr</span>\n        <div><div class=\"vs-big\">0</div><div class=\"vs-sub\">onbeantwoorde berichten</div></div>\n        <div><div class=\"vs-big\">&lt; 2 min</div><div class=\"vs-sub\">eerste reactie op elke aanvraag</div></div>\n        <div class=\"vs-stars\">★★★★★</div>\n        <span class=\"vs-out\">✓ klant blijft</span>\n      </div>\n      <div class=\"vs-badge\">vs</div>\n    </div>\n  </div>\n  <a href=\"#probleem\" class=\"scroll-hint\" id=\"scrollHint\" aria-label=\"Scroll naar beneden\">\n    <span>scroll</span>\n    <span class=\"arr\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 4v15M5 13l7 7 7-7\"></path></svg></span>\n  </a>\n</section>\n\n<!-- 01 · PROBLEEM -->\n<section class=\"blk\" id=\"probleem\" data-screen-label=\"Probleem\">\n  <div class=\"wrap two wide-r\">\n    <div class=\"copy reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">01 /</span> het probleem</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Terwijl jij aan het werk bent, <span class=\"dg\">glipt de klant weg.</span></h2>\n      <p class=\"sec-p\">Je staat op de steiger, onder een dak, of bij een klant op locatie. Ondertussen komt er een mailtje of appje binnen — en niemand reageert. Voor de klant is dat het teken om de volgende aannemer te bellen.</p>\n    </div>\n    <div class=\"pain glass reveal d1\">\n      <div class=\"pain-top\">\n        <span class=\"pain-day\">jouw mail &amp; whatsapp — een gewone werkdag</span>\n        <span class=\"pill-bad\"><i></i>gemist</span>\n      </div>\n      <div class=\"pain-stats\">\n        <div class=\"pstat card\"><div class=\"v\"><span data-count=\"4.5\" data-dec=\"1\" data-suffix=\"u\">0u</span></div><div class=\"l\">gem. reactietijd op een mailtje</div></div>\n        <div class=\"pstat card\"><div class=\"v\"><span data-count=\"9\">0</span></div><div class=\"l\">onbeantwoorde appjes deze week</div></div>\n        <div class=\"pstat card\"><div class=\"v\"><span data-count=\"3\">0</span></div><div class=\"l\">offertes nooit opgevolgd</div></div>\n      </div>\n      <div class=\"trend card\">\n        <div class=\"trend-h\"><span>gemiste aanvragen · 8 weken</span><b>↑ stijgt</b></div>\n        <div class=\"bars\">\n          <div class=\"bar dn\" style=\"height:90%\"></div>\n          <div class=\"bar dn\" style=\"height:84%\"></div>\n          <div class=\"bar dn\" style=\"height:78%\"></div>\n          <div class=\"bar dn\" style=\"height:66%\"></div>\n          <div class=\"bar dn\" style=\"height:58%\"></div>\n          <div class=\"bar dn\" style=\"height:48%\"></div>\n          <div class=\"bar dn\" style=\"height:40%\"></div>\n          <div class=\"bar dn\" style=\"height:32%\"></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<!-- 02 · STAMBOOM (interactief) -->\n<section class=\"blk\" id=\"stamboom\" data-screen-label=\"Stamboom\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\" style=\"margin: 0 auto 52px; text-align: center;\">\n      <span class=\"eyebrow\" style=\"justify-content:center;\"><span class=\"num\">02 /</span> dit bouwen we voor jou</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Eén klein AI-team, <span class=\"hl\">direct onder jou.</span></h2>\n      <p class=\"sec-p\" style=\"margin: 22px auto 0;\">Zo simpel is het opgezet. Klik op een blok en zie wat er gebeurt als er een bericht binnenkomt.</p>\n    </div>\n    <div class=\"org reveal d1\">\n      <div class=\"org-owner-wrap\">\n        <div class=\"org-owner\">\n          <span class=\"oi\">\n            <svg viewBox=\"0 0 40 40\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n              <rect x=\"9\" y=\"12\" width=\"22\" height=\"17\" rx=\"5\" stroke-width=\"1.8\"></rect>\n              <line x1=\"20\" y1=\"12\" x2=\"20\" y2=\"6\" stroke-width=\"1.8\"></line>\n              <circle cx=\"20\" cy=\"4\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"></circle>\n              <circle cx=\"15.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n              <circle cx=\"24.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n              <line x1=\"15\" y1=\"25.5\" x2=\"25\" y2=\"25.5\" stroke-width=\"1.8\"></line>\n            </svg>\n          </span>\n          jij — eigenaar\n        </div>\n        <div class=\"org-trunk\"></div>\n        <div class=\"org-branch\"></div>\n      </div>\n      <div class=\"org-row\">\n        <div class=\"org-node-wrap\">\n          <div class=\"org-drop\"></div>\n          <button class=\"org-node card\" data-node=\"a\" type=\"button\">\n            <span class=\"on-k\">mail · whatsapp</span>\n            <h3>Klantenservice-agent</h3>\n            <p>Beantwoordt vragen die elke dag terugkomen — openingstijden, prijsindicatie, planning.</p>\n          </button>\n        </div>\n        <div class=\"org-node-wrap\">\n          <div class=\"org-drop\"></div>\n          <button class=\"org-node card\" data-node=\"b\" type=\"button\">\n            <span class=\"on-k\">offertes · facturen · agenda</span>\n            <h3>Aanvragen-agent</h3>\n            <p>Pikt elke offerteaanvraag meteen op, vraagt de juiste foto's en adresgegevens, plant de afspraak in je agenda en maakt de factuur zodra het werk klaar is.</p>\n          </button>\n        </div>\n        <div class=\"org-node-wrap\">\n          <div class=\"org-drop\"></div>\n          <button class=\"org-node card\" data-node=\"c\" type=\"button\">\n            <span class=\"on-k\">opvolging</span>\n            <h3>Opvolg-agent</h3>\n            <p>Laat nooit een aanvraag koud worden — volgt automatisch op als er geen reactie komt.</p>\n          </button>\n        </div>\n      </div>\n      <div class=\"org-dot\" id=\"orgDot\"></div>\n    </div>\n    <div class=\"org-detail card empty\" id=\"orgDetail\">// klik op een blok hierboven om een voorbeeld te zien</div>\n    <div class=\"org-hint\">jij houdt overal de controle — alles is terug te zien en aan te passen</div>\n  </div>\n</section>\n\n<!-- 03 · DE OPLOSSING -->\n<section class=\"blk\" id=\"oplossing\" data-screen-label=\"In actie\" style=\"background:var(--bg-sunken);\">\n  <div class=\"wrap two\">\n    <div class=\"copy reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">03 /</span> zo ziet het eruit</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Klantenservice die <span class=\"hl\">zichzelf afhandelt.</span></h2>\n      <p class=\"sec-p\">Getraind op jouw diensten, jouw prijzen en jouw manier van praten. De AI beantwoordt via mail en WhatsApp, maakt facturen, plant je agenda in en houdt je website en social media bij. Alles wat groter is dan een standaardvraag schuift automatisch door naar jou.</p>\n    </div>\n    <div class=\"csm glass reveal d1\">\n      <div class=\"csm-top\">\n        <div class=\"mock-title\">Mail &amp; WhatsApp <span class=\"live\"><i></i>auto-pilot</span></div>\n        <span class=\"csm-meta\">vandaag · 14 opgelost</span>\n      </div>\n      <div class=\"csm-list stag\">\n        <div class=\"csm-row card\"><div class=\"ava\" style=\"--c:#066377\">J</div><div><div class=\"csm-subj\">Kunnen jullie deze week nog een lekkage repareren?</div><div class=\"csm-prev\">WhatsApp — dringend, dak lekt…</div></div><div class=\"tag-ok\">opgelost · 97%</div></div>\n        <div class=\"csm-row card\"><div class=\"ava\" style=\"--c:#4bbdf0\">M</div><div><div class=\"csm-subj\">Wat kost het om een dakkapel te plaatsen?</div><div class=\"csm-prev\">Mail — vraagt om een indicatie…</div></div><div class=\"tag-ok\">opgelost · 93%</div></div>\n        <div class=\"csm-row card\"><div class=\"ava\" style=\"--c:#9c7a43\">R</div><div><div class=\"csm-subj\">Offerte complete badkamer, 40m²</div><div class=\"csm-prev\">Groot project, wil alles bespreken…</div></div><div class=\"tag-esc\">→ naar jou</div></div>\n      </div>\n      <div class=\"draft reveal d2\">\n        <div class=\"dh\"><span>ai-antwoord · lekkage-melding</span><span>97% zeker</span></div>\n        <div class=\"dt\">Hoi Jeroen — we kunnen donderdagochtend langskomen, tussen 8 en 10 uur. Kun je een foto van de lekkage sturen zodat we weten wat we moeten meenemen?</div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<!-- 04 · ZO WERKT HET -->\n<section class=\"blk\" id=\"werkwijze\" data-screen-label=\"Zo werkt het\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">04 /</span> zo werkt het</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Kennismaking. Wij bouwen.<br><span class=\"hl\">Jij doet niks meer aan je inbox.</span></h2>\n      <p class=\"sec-p\">Je hoeft niets te installeren of te leren. Wij regelen het end-to-end en jij houdt de controle.</p>\n    </div>\n    <div class=\"steps stag\">\n      <div class=\"step glass\">\n        <div class=\"dotw\"></div>\n        <div class=\"k\">[ 01 ]</div>\n        <h3>We leren je bedrijf kennen</h3>\n        <p>Eén gesprek van 30 minuten. We kijken hoeveel mail en WhatsApp-berichten er binnenkomen, welke vragen terugkomen en waar aanvragen nu blijven liggen.</p>\n        <div class=\"mech\">output: een plan op maat</div>\n      </div>\n      <div class=\"step glass\">\n        <div class=\"dotw\"></div>\n        <div class=\"k\">[ 02 ]</div>\n        <h3>Wij bouwen &amp; koppelen alles</h3>\n        <p>We koppelen je mail, WhatsApp, facturatie, agenda en eventueel je website en social media, en trainen de AI op jouw diensten, jouw prijzen en jouw manier van praten.</p>\n        <div class=\"mech\">mail/whatsapp → ai → antwoord</div>\n      </div>\n      <div class=\"step glass\">\n        <div class=\"dotw\"></div>\n        <div class=\"k\">[ 03 ]</div>\n        <h3>Jij doet niks meer aan je inbox</h3>\n        <p>Alles draait automatisch. Je ziet alles terug in een simpel overzicht — en grijpt in wanneer jij dat wil.</p>\n        <div class=\"mech\">status: live · jij houdt de controle</div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<!-- 05 · DE REKENING (anchor) -->\n<section class=\"blk\" id=\"rekening\" data-screen-label=\"De rekening\" style=\"background:var(--bg-sunken);\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">05 /</span> de rekening</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Een extra paar handen, <span class=\"hl\">zonder een extra salaris.</span></h2>\n      <p class=\"sec-p\">Een medewerker erbij kost al snel <b style=\"color:var(--ink)\">±€3.000–3.500 per maand</b> — plus inwerken, ziekteverzuim en vakantiedagen. BotBuildr regelt je klantenservice al <b style=\"color:var(--ink)\">vanaf €499 per maand</b>.</p>\n    </div>\n    <div class=\"cmp stag\">\n      <div class=\"cmp-row cmp-head\">\n        <div class=\"cmp-cell lbl\"></div>\n        <div class=\"cmp-cell human\">een medewerker</div>\n        <div class=\"cmp-cell bot\">▋ botbuildr ai</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">kosten</div>\n        <div class=\"cmp-cell human\"><span class=\"big\">±€3.000–3.500</span> per maand</div>\n        <div class=\"cmp-cell bot\"><span class=\"big\">vanaf €499</span> per maand</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">reactietijd</div>\n        <div class=\"cmp-cell human\">minuten tot uren — als hij niet op de steiger staat</div>\n        <div class=\"cmp-cell bot\"><span class=\"big\">binnen 2 min</span>, ook 's avonds</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">beschikbaar</div>\n        <div class=\"cmp-cell human\">40 uur per week</div>\n        <div class=\"cmp-cell bot\"><span class=\"big\">24/7</span> · ook in het weekend</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">capaciteit</div>\n        <div class=\"cmp-cell human\">één bericht tegelijk</div>\n        <div class=\"cmp-cell bot\">tientallen klanten tegelijk</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">bouwkosten</div>\n        <div class=\"cmp-cell human\">—</div>\n        <div class=\"cmp-cell bot\"><span class=\"big\">€0</span> — gratis, volledig op maat gebouwd</div>\n      </div>\n      <div class=\"cmp-row\">\n        <div class=\"cmp-cell lbl\">inwerken · ziek · vakantie</div>\n        <div class=\"cmp-cell human\">weken inwerken, valt uit</div>\n        <div class=\"cmp-cell bot\">live binnen een week, nooit ziek of op vakantie</div>\n      </div>\n    </div>\n    <div class=\"punch reveal d2\">\n      <div><div class=\"pv\">~6–7×</div><div class=\"pl\">goedkoper dan een extra medewerker</div></div>\n      <div><div class=\"pv\">0</div><div class=\"pl\">gemiste aanvragen door ziekte of vakantie</div></div>\n    </div>\n    <div class=\"anchor-note reveal d2\"><span class=\"ar\">→</span> <b>Geen bouwkosten, geen verborgen kosten.</b> Het bouwen is gratis en wordt volledig op maat voor jouw bedrijf gemaakt — je betaalt alleen vanaf €499 per maand, alles inbegrepen.</div>\n  </div>\n</section>\n\n<!-- 06 · RESULTATEN -->\n<section class=\"blk\" id=\"resultaten\" data-screen-label=\"Resultaten\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">06 /</span> waarom dit werkt</span>\n      <h2 class=\"sec-h\" style=\"margin-top: 22px;\">Bedrijven die dit nu al doen, <span class=\"hl\">lopen voor.</span></h2>\n      <p class=\"sec-p\">Simpele feiten, geen praatjes: AI werkt harder, is goedkoper, en valt nooit uit.</p>\n    </div>\n    <div class=\"res-tiles stag\">\n      <div class=\"rtile glass\"><div class=\"v\">0</div><div class=\"l\">dagen ziekteverzuim of vakantie — de AI werkt altijd door</div></div>\n      <div class=\"rtile glass\"><div class=\"v\">24/7</div><div class=\"l\">bereikbaar, ook 's avonds en in het weekend</div></div>\n      <div class=\"rtile glass\"><div class=\"v\">~6–7×</div><div class=\"l\">goedkoper dan een extra medewerker in loondienst</div></div>\n    </div>\n    <div class=\"res-note reveal d1\"><span class=\"b\">//</span> bedrijven die klantenservice nu automatiseren, winnen structureel meer aanvragen dan bedrijven die dat niet doen — en dat verschil groeit elk jaar</div>\n  </div>\n</section>\n\n<!-- 07 · HET TIJDVENSTER -->\n<section class=\"blk\" id=\"tijdvenster\" data-screen-label=\"Het tijdvenster\" style=\"background:var(--bg-sunken);\">\n  <div class=\"wrap two wide-l\">\n    <div class=\"copy reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">07 /</span> het tijdvenster</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Straks doet iedereen dit. <span class=\"hl\">Jij kunt nu voorlopen.</span></h2>\n      <div class=\"fomo-list\">\n        <div class=\"fomo-item\"><span class=\"b\">01</span><div class=\"t\">Klusbedrijven die dit nu al doen, missen geen enkele aanvraag meer — en <b>groeien</b> terwijl anderen stilstaan.</div></div>\n        <div class=\"fomo-item\"><span class=\"b\">02</span><div class=\"t\">Over een paar jaar is dit de norm in de bouw. <span>Wie wacht, loopt straks alleen achter de feiten aan.</span></div></div>\n        <div class=\"fomo-item\"><span class=\"b\">03</span><div class=\"t\">Je bent er <b>vroeg</b> bij. Precies nu is het verschil het grootst — voordat je concurrent het ook doet.</div></div>\n      </div>\n    </div>\n    <div class=\"curve-wrap glass reveal d1 curve\">\n      <div class=\"curve-cap\"><span>// adoptie ai-klantenservice</span><span>marktaandeel</span></div>\n      <svg class=\"curve-svg\" viewBox=\"0 0 560 360\" preserveAspectRatio=\"xMidYMid meet\" aria-label=\"Adoptiecurve\">\n        <line class=\"curve-grid\" x1=\"40\" y1=\"310\" x2=\"540\" y2=\"310\"></line>\n        <line class=\"curve-grid\" x1=\"40\" y1=\"60\" x2=\"40\" y2=\"310\"></line>\n        <path class=\"curve-area\" d=\"M40,300 C150,292 200,275 270,200 C320,150 360,120 440,108 L440,310 L40,310 Z\"></path>\n        <path class=\"curve-path\" pathLength=\"1\" d=\"M40,300 C150,292 200,275 270,200 C320,150 360,120 440,108\"></path>\n        <path class=\"curve-late\" pathLength=\"1\" d=\"M440,108 C480,100 510,96 540,94\"></path>\n        <circle class=\"curve-dot-ring\" cx=\"150\" cy=\"288\" r=\"16\"></circle>\n        <circle class=\"curve-dot\" cx=\"150\" cy=\"288\" r=\"7\"></circle>\n        <line class=\"curve-conn\" x1=\"150\" y1=\"246\" x2=\"150\" y2=\"270\"></line>\n        <text class=\"curve-lbl\" x=\"150\" y=\"234\" text-anchor=\"middle\">jij bent hier</text>\n        <text class=\"curve-zone\" x=\"250\" y=\"346\" text-anchor=\"middle\">↤ voorsprong</text>\n        <text class=\"curve-axis\" x=\"490\" y=\"346\" text-anchor=\"middle\">de norm</text>\n        <text class=\"curve-axis\" x=\"48\" y=\"74\">100%</text>\n      </svg>\n    </div>\n  </div>\n</section>\n\n<!-- 08 · BEZWAREN -->\n<section class=\"blk\" id=\"bezwaren\" data-screen-label=\"Bezwaren\" style=\"background:var(--bg-sunken);\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">08 /</span> eerlijke antwoorden</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px;\">Wat klusbedrijven ons het vaakst vragen.</h2>\n    </div>\n    <div class=\"obj-grid stag\">\n      <div class=\"obj glass\">\n        <div class=\"obj-q\"><span class=\"x\">✕</span> \"Ik wil geen robot die met mijn klanten praat.\"</div>\n        <div class=\"obj-a\">De AI belt niet — dat doen wij bewust niet. Ze schrijft mail en WhatsApp in jouw toon en met jouw woorden, zodat niemand doorheeft dat het geen mens is. Ze krijgen gewoon sneller antwoord.</div>\n      </div>\n      <div class=\"obj glass\">\n        <div class=\"obj-q\"><span class=\"x\">✕</span> \"Klanten merken dat het nep is.\"</div>\n        <div class=\"obj-a\">De AI leest mee met hoe jij normaal reageert en kopieert die stijl. Twijfelt hij? Dan schuift het gesprek gewoon door naar jou — geen halve of rare antwoorden.</div>\n      </div>\n      <div class=\"obj glass\">\n        <div class=\"obj-q\"><span class=\"x\">✕</span> \"Dit is te duur of te ingewikkeld voor mijn bedrijf.\"</div>\n        <div class=\"obj-a\">Vanaf €499 per maand — het bouwen zelf is gratis en volledig op maat, geen verborgen kosten. Je hoeft niets te installeren of te leren; wij zetten het voor je op.</div>\n      </div>\n      <div class=\"obj glass\">\n        <div class=\"obj-q\"><span class=\"x\">✕</span> \"Ik heb geen tijd om zoiets op te zetten.\"</div>\n        <div class=\"obj-a\">Eén gesprek van 30 minuten is alles wat we van je nodig hebben. De rest bouwen en koppelen wij.</div>\n      </div>\n      <div class=\"obj glass\">\n        <div class=\"obj-q\"><span class=\"x\">✕</span> \"Wat als hij iets verkeerds zegt of een verkeerde prijs noemt?\"</div>\n        <div class=\"obj-a\">De AI werkt met de prijzen en regels die jij aangeeft, en twijfelt liever te vroeg dan te laat — onduidelijke vragen gaan direct naar jou door.</div>\n      </div>\n    </div>\n  </div>\n</section>\n\n<!-- 09 · WAAROM BOTBUILDR -->\n<section class=\"blk\" id=\"waarom\" data-screen-label=\"Waarom BotBuildr\">\n  <div class=\"wrap\">\n    <div class=\"sec-head reveal\">\n      <span class=\"eyebrow\"><span class=\"num\">09 /</span> waarom botbuildr</span>\n      <h2 class=\"sec-h\" style=\"margin-top:22px; display:flex; flex-wrap:wrap; align-items:center; gap:16px;\">Wij doen één ding. En daar zijn we <span class=\"hl\">koning</span> in. <span class=\"king\">#1 in ai-klantenservice voor klusbedrijven<span class=\"king-dot\"></span></span></h2>\n    </div>\n    <div class=\"why-grid stag\">\n      <div class=\"why glass\"><div class=\"wn\">01</div><div><h3>Specialist, geen plugin</h3><p>Wij bouwen alléén klantenservice-automatisering voor klusbedrijven — end to end, niet als bijzaak. Daar zit onze hele focus.</p></div></div>\n      <div class=\"why glass\"><div class=\"wn\">02</div><div><h3>Het klinkt als jouw bedrijf</h3><p>De AI leert van je eerdere gesprekken en schrijft in jouw stijl. Klanten merken niet dat het AI is — ze worden gewoon sneller geholpen.</p></div></div>\n      <div class=\"why glass\"><div class=\"wn\">03</div><div><h3>Live binnen een week</h3><p>Geen maandenlang project. We koppelen je mail, WhatsApp en facturatie, trainen de AI en gaan live.</p></div></div>\n      <div class=\"why glass\"><div class=\"wn\">04</div><div><h3>Jij houdt de controle</h3><p>Elke actie zichtbaar in een dashboard, alles te overrulen, volledig auditeerbaar. De AI werkt vóór je, niet buiten je om.</p></div></div>\n    </div>\n  </div>\n</section>\n\n<!-- 10 · CLOSE -->\n<div class=\"final-wrap\">\n  <div class=\"wrap\">\n    <div class=\"final glass\" id=\"contact\">\n      <div class=\"close-grid\">\n        <div class=\"stag\">\n          <span class=\"scarcity\"><i></i> we nemen een beperkt aantal klusbedrijven per maand aan</span>\n          <h2>Laat geen klant meer <span class=\"hl\">wachten.</span></h2>\n          <p>30 minuten. We kijken naar jouw mail, WhatsApp en aanvragen en laten precies zien wat we als eerste voor je bedrijf kunnen automatiseren.</p>\n          <a href=\"https://calendly.com/botbuildr-ai\" target=\"_blank\" rel=\"noopener\" class=\"btn btn-primary\">&gt; plan een kennismaking</a>\n        </div>\n        <div class=\"cta-panel card stag\">\n          <div class=\"cta-line\"><span class=\"ck\">✓</span><div><b>Gratis kennismaking</b> <span>— 30 min, geen verplichting</span></div></div>\n          <div class=\"cta-line\"><span class=\"ck\">✓</span><div><b>We kijken samen naar je mail, WhatsApp en offertes</b> <span>— meteen concreet</span></div></div>\n          <div class=\"cta-line\"><span class=\"ck\">✓</span><div><b>Bouwen is gratis</b> <span>— volledig op maat, geen verborgen kosten</span></div></div>\n          <div class=\"cta-line\"><span class=\"ck\">✓</span><div><b>Vanaf €499 per maand</b> <span>— alles inbegrepen</span></div></div>\n          <div class=\"cta-line\"><span class=\"ck\">✓</span><div><b>Live binnen een week</b> <span>— niet in kwartalen</span></div></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<!-- FOOTER -->\n<footer>\n  <div class=\"wrap foot-inner\">\n    <div class=\"logo\">\n      <span class=\"logo-mark\">\n        <svg viewBox=\"0 0 40 40\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n          <rect x=\"9\" y=\"12\" width=\"22\" height=\"17\" rx=\"5\" stroke-width=\"1.8\"></rect>\n          <line x1=\"20\" y1=\"12\" x2=\"20\" y2=\"6\" stroke-width=\"1.8\"></line>\n          <circle cx=\"20\" cy=\"4\" r=\"1.7\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <circle cx=\"15.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <circle cx=\"24.5\" cy=\"20\" r=\"1.8\" fill=\"currentColor\" stroke=\"none\"></circle>\n          <line x1=\"15\" y1=\"25.5\" x2=\"25\" y2=\"25.5\" stroke-width=\"1.8\"></line>\n        </svg>\n      </span>\n      <span>BotBuildr<span class=\"dotai\">.ai</span></span>\n    </div>\n    <div class=\"foot-links\">\n      <a href=\"#stamboom\">hoe het werkt</a>\n      <a href=\"#rekening\">prijs</a>\n      <a href=\"#waarom\">waarom</a>\n      <a href=\"https://calendly.com/botbuildr-ai\" target=\"_blank\" rel=\"noopener\">plan een kennismaking</a>\n    </div>\n    <div class=\"copyright\">© 2026 BotBuildr.ai — nooit meer een gemiste klant. // gebouwd voor vakmensen.</div>\n  </div>\n</footer>"
+const logoMarkSvg = `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <rect width="120" height="120" rx="29" fill="#066377"></rect>
+          <polyline points="50,38 76,60 50,82" stroke="#EAF4F8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          <circle cx="84" cy="86" r="6.5" fill="#4BBDF0"></circle>
+        </svg>`
+
+export const landingMarkup = `<!-- NAV -->
+<div class="navwrap">
+  <nav class="nav glass">
+    <a href="#top" class="logo" aria-label="BotBuildr.ai home">
+      <span class="logo-mark">
+        ${logoMarkSvg}
+      </span>
+      <span>BotBuildr<span class="dotai">.ai</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#stamboom" class="lk hide-sm">hoe het werkt</a>
+      <a href="#rekening" class="lk hide-sm">prijs</a>
+      <a href="#waarom" class="lk hide-sm">waarom</a>
+      <a href="https://calendly.com/botbuildr-ai" target="_blank" rel="noopener" class="nav-cta"><span class="cta-full">&gt; plan een strategy call</span><span class="cta-short">&gt; strategy call</span></a>
+    </div>
+  </nav>
+</div>
+
+<!-- HERO -->
+<a id="top"></a>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-stack stag">
+      <span class="eyebrow" style="--d:80ms;">BotBuildr — klantcontact op autopilot</span>
+      <h1 style="--d:200ms;">Klantenservice, socials en leads — <span class="hl">op autopilot.</span></h1>
+      <p class="lead" style="--d:340ms;">Te druk om het zelf te doen. Te duur om iemand fulltime in te huren. BotBuildr neemt het over — in jouw toon, 24/7.</p>
+      <div class="hero-actions" style="--d:480ms;">
+        <a href="https://calendly.com/botbuildr-ai" target="_blank" rel="noopener" class="btn btn-primary">&gt; plan een strategy call</a>
+        <a href="#stamboom" class="btn btn-secondary">&gt; bekijk hoe het werkt</a>
+      </div>
+      <div class="reassure" style="--d:620ms;">
+        <span><span class="dot"></span> klinkt als jouw bedrijf — geen robot-gevoel</span>
+        <span><span class="dot"></span> klantenservice, social media &amp; leads</span>
+        <span><span class="dot"></span> vanaf €499/mnd · bouwen is gratis</span>
+      </div>
+    </div>
+    <div class="vs glass reveal" aria-label="Zonder BotBuildr versus met BotBuildr">
+      <div class="vs-side bad">
+        <span class="vs-tag">✕ zonder botbuildr</span>
+        <div><div class="vs-big">43</div><div class="vs-sub">onbeantwoorde berichten &amp; DM's / week</div></div>
+        <div><div class="vs-big">dagen</div><div class="vs-sub">tot een lead of vraag wordt opgepakt</div></div>
+        <div class="vs-stars">★☆☆☆☆</div>
+        <span class="vs-out">klant haakt af →</span>
+      </div>
+      <div class="vs-side good">
+        <span class="vs-tag">✓ met botbuildr</span>
+        <div><div class="vs-big">0</div><div class="vs-sub">onbeantwoorde berichten &amp; DM's</div></div>
+        <div><div class="vs-big">&lt; 2 min</div><div class="vs-sub">eerste reactie — 24/7</div></div>
+        <div class="vs-stars">★★★★★</div>
+        <span class="vs-out">✓ klant blijft</span>
+      </div>
+      <div class="vs-badge">vs</div>
+    </div>
+  </div>
+  <a href="#probleem" class="scroll-hint" id="scrollHint" aria-label="Scroll naar beneden">
+    <span>scroll</span>
+    <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 13l7 7 7-7"></path></svg></span>
+  </a>
+</section>
+
+<!-- 01 · PROBLEEM -->
+<section class="blk" id="probleem" data-screen-label="Probleem">
+  <div class="wrap two wide-r">
+    <div class="copy reveal">
+      <span class="eyebrow"><span class="num">01 /</span> het probleem</span>
+      <h2 class="sec-h" style="margin-top:22px;">Je weet wat er moet gebeuren. <span class="dg">Je hebt er alleen geen tijd voor.</span></h2>
+      <p class="sec-p">Klanten wachten op antwoord. Socials liggen stil. Leads koelen af. Iemand inhuren voelt logisch — tot je de kosten ziet. Dus doe je het zelf 's avonds, of helemaal niet.</p>
+      <p class="sec-p" style="margin-top:18px;"><b style="color:var(--ink)">Dat hoeft niet meer.</b></p>
+    </div>
+    <div class="pain glass reveal d1">
+      <div class="pain-top">
+        <span class="pain-day">jouw inbox, DMs &amp; leads — een gewone werkweek</span>
+        <span class="pill-bad"><i></i>blijft liggen</span>
+      </div>
+      <div class="pain-stats">
+        <div class="pstat card"><div class="v"><span data-count="4.5" data-dec="1" data-suffix="u">0u</span></div><div class="l">gem. reactietijd op een bericht</div></div>
+        <div class="pstat card"><div class="v"><span data-count="12">0</span></div><div class="l">onbeantwoorde DM's &amp; mails deze week</div></div>
+        <div class="pstat card"><div class="v"><span data-count="5">0</span></div><div class="l">leads zonder opvolging</div></div>
+      </div>
+      <div class="trend card">
+        <div class="trend-h"><span>gemiste kansen · 8 weken</span><b>↑ stijgt</b></div>
+        <div class="bars">
+          <div class="bar dn" style="height:90%"></div>
+          <div class="bar dn" style="height:84%"></div>
+          <div class="bar dn" style="height:78%"></div>
+          <div class="bar dn" style="height:66%"></div>
+          <div class="bar dn" style="height:58%"></div>
+          <div class="bar dn" style="height:48%"></div>
+          <div class="bar dn" style="height:40%"></div>
+          <div class="bar dn" style="height:32%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · STAMBOOM (interactief) · 3 pijlers -->
+<section class="blk" id="stamboom" data-screen-label="Stamboom">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin: 0 auto 52px; text-align: center;">
+      <span class="eyebrow" style="justify-content:center;"><span class="num">02 /</span> dit bouwen we voor jou</span>
+      <h2 class="sec-h" style="margin-top:22px;">Drie pijlers. <span class="hl">Eén systeem onder jou.</span></h2>
+      <p class="sec-p" style="margin: 22px auto 0;">Klik op een blok en zie wat BotBuildr overneemt — klantenservice, social media en leads.</p>
+    </div>
+    <div class="org reveal d1">
+      <div class="org-owner-wrap">
+        <div class="org-owner">
+          <span class="oi">
+            ${logoMarkSvg}
+          </span>
+          jij — eigenaar
+        </div>
+        <div class="org-trunk"></div>
+        <div class="org-branch"></div>
+      </div>
+      <div class="org-row">
+        <div class="org-node-wrap">
+          <div class="org-drop"></div>
+          <button class="org-node card" data-node="a" type="button">
+            <span class="on-k">mail · chat · whatsapp · formulier</span>
+            <h3>Klantenservice</h3>
+            <p>Antwoord binnen seconden. Jij alleen als het ertoe doet.</p>
+          </button>
+        </div>
+        <div class="org-node-wrap">
+          <div class="org-drop"></div>
+          <button class="org-node card" data-node="b" type="button">
+            <span class="on-k">posts · reacties · dm's</span>
+            <h3>Social media</h3>
+            <p>Posts, reacties en DM's — zonder dat jij erachteraan hoeft.</p>
+          </button>
+        </div>
+        <div class="org-node-wrap">
+          <div class="org-drop"></div>
+          <button class="org-node card" data-node="c" type="button">
+            <span class="on-k">inbound · outbound · nurture</span>
+            <h3>Leads</h3>
+            <p>Geen lead meer die stilvalt.</p>
+          </button>
+        </div>
+      </div>
+      <div class="org-dot" id="orgDot"></div>
+    </div>
+    <div class="org-detail card empty" id="orgDetail">// klik op een blok hierboven om een voorbeeld te zien</div>
+    <div class="org-hint">jij houdt overal de controle — alles is terug te zien en aan te passen</div>
+  </div>
+</section>
+
+<!-- 03 · DE OPLOSSING -->
+<section class="blk" id="oplossing" data-screen-label="In actie" style="background:var(--bg-sunken);">
+  <div class="wrap two">
+    <div class="copy reveal">
+      <span class="eyebrow"><span class="num">03 /</span> zo ziet het eruit</span>
+      <h2 class="sec-h" style="margin-top:22px;">Klantenservice in actie. <span class="hl">Warm, snel, jouw toon.</span></h2>
+      <p class="sec-p">Getraind op jouw producten, FAQ en manier van praten. De AI beantwoordt mail, chat, WhatsApp en formulieren. Standaardvragen gaan vanzelf; de complexe 20% komt bij jou.</p>
+    </div>
+    <div class="csm glass reveal d1">
+      <div class="csm-top">
+        <div class="mock-title">Mail &amp; chat <span class="live"><i></i>auto-pilot</span></div>
+        <span class="csm-meta">vandaag · 14 opgelost</span>
+      </div>
+      <div class="csm-list stag">
+        <div class="csm-row card"><div class="ava" style="--c:#066377">J</div><div><div class="csm-subj">Wat zijn jullie levertijden?</div><div class="csm-prev">WhatsApp — wil vandaag nog weten…</div></div><div class="tag-ok">opgelost · 97%</div></div>
+        <div class="csm-row card"><div class="ava" style="--c:#4bbdf0">M</div><div><div class="csm-subj">Kan ik mijn bestelling nog wijzigen?</div><div class="csm-prev">Mail — order #4821…</div></div><div class="tag-ok">opgelost · 93%</div></div>
+        <div class="csm-row card"><div class="ava" style="--c:#9c7a43">R</div><div><div class="csm-subj">Maatwerkofferte voor 40+ seats</div><div class="csm-prev">Groot traject, wil alles bespreken…</div></div><div class="tag-esc">→ naar jou</div></div>
+      </div>
+      <div class="draft reveal d2">
+        <div class="dh"><span>ai-antwoord · levertijd-vraag</span><span>97% zeker</span></div>
+        <div class="dt">Hoi Jeroen — standaard leveren we binnen 2–3 werkdagen. Wil je express? Dan kan het morgen al bij je zijn. Zal ik dat voor je omzetten?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · ZO WERKT HET -->
+<section class="blk" id="werkwijze" data-screen-label="Zo werkt het">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="num">04 /</span> zo werkt het</span>
+      <h2 class="sec-h" style="margin-top:22px;">Strategy call. Wij bouwen het.<br><span class="hl">Jij houdt overzicht.</span></h2>
+      <p class="sec-p">Je hoeft niets te installeren of te leren. Wij regelen het end-to-end — jij blijft in control.</p>
+    </div>
+    <div class="steps stag">
+      <div class="step glass">
+        <div class="dotw"></div>
+        <div class="k">[ 01 ]</div>
+        <h3>Strategy call</h3>
+        <p>30 minuten. We kijken naar je klantcontact, socials en leads — en wat we als eerste kunnen overnemen.</p>
+        <div class="mech">output: een plan op maat</div>
+      </div>
+      <div class="step glass">
+        <div class="dotw"></div>
+        <div class="k">[ 02 ]</div>
+        <h3>Wij bouwen het</h3>
+        <p>We koppelen je kanalen, trainen de AI op jouw toon en zetten klantenservice, social media en lead-opvolging live.</p>
+        <div class="mech">kanalen → ai → antwoord / actie</div>
+      </div>
+      <div class="step glass">
+        <div class="dotw"></div>
+        <div class="k">[ 03 ]</div>
+        <h3>Jij houdt overzicht</h3>
+        <p>Alles draait automatisch. Je ziet wat er gebeurt in een simpel overzicht — en grijpt in wanneer jij dat wilt.</p>
+        <div class="mech">status: live · jij houdt de controle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · DE REKENING (anchor) -->
+<section class="blk" id="rekening" data-screen-label="De rekening" style="background:var(--bg-sunken);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="num">05 /</span> de rekening</span>
+      <h2 class="sec-h" style="margin-top:22px;">Alles hierboven. <span class="hl">Voor €499 per maand.</span></h2>
+      <p class="sec-p">Een fulltime hire kost al snel <b style="color:var(--ink)">±€3.000–4.000 per maand</b>. BotBuildr neemt klantenservice, socials en leads over <b style="color:var(--ink)">vanaf €499 per maand</b> — bouwen is gratis.</p>
+    </div>
+    <div class="cmp stag">
+      <div class="cmp-row cmp-head">
+        <div class="cmp-cell lbl"></div>
+        <div class="cmp-cell human">fulltime hire</div>
+        <div class="cmp-cell bot">botbuildr</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">kosten</div>
+        <div class="cmp-cell human"><span class="big">±€3.000–4.000</span> per maand</div>
+        <div class="cmp-cell bot"><span class="big">vanaf €499</span> per maand</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">reactietijd</div>
+        <div class="cmp-cell human">minuten tot uren — als iemand tijd heeft</div>
+        <div class="cmp-cell bot"><span class="big">binnen seconden</span>, ook 's avonds</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">beschikbaar</div>
+        <div class="cmp-cell human">40 uur per week</div>
+        <div class="cmp-cell bot"><span class="big">24/7</span> · ook in het weekend</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">capaciteit</div>
+        <div class="cmp-cell human">één gesprek tegelijk</div>
+        <div class="cmp-cell bot">tientallen klanten tegelijk</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">bouwkosten</div>
+        <div class="cmp-cell human">—</div>
+        <div class="cmp-cell bot"><span class="big">€0</span> — gratis, volledig op maat gebouwd</div>
+      </div>
+      <div class="cmp-row">
+        <div class="cmp-cell lbl">inwerken · ziek · vakantie</div>
+        <div class="cmp-cell human">weken inwerken, valt uit</div>
+        <div class="cmp-cell bot">live binnen een week, stopt niet om vijf uur</div>
+      </div>
+    </div>
+    <div class="punch reveal d2">
+      <div><div class="pv">~6–8×</div><div class="pl">goedkoper dan een fulltime hire</div></div>
+      <div><div class="pv">0</div><div class="pl">stilvallende leads door ziekte of vakantie</div></div>
+    </div>
+    <div class="anchor-note reveal d2"><span class="ar">→</span> <b>Minder dan één week parttime hulp — voor een systeem dat niet stopt om vijf uur.</b></div>
+  </div>
+</section>
+
+<!-- 06 · VOOR WIE -->
+<section class="blk" id="voor-wie" data-screen-label="Voor wie">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="num">06 /</span> voor wie</span>
+      <h2 class="sec-h" style="margin-top: 22px;">Voor ondernemers die het te druk hebben om <span class="hl">alles zelf te doen.</span></h2>
+      <p class="sec-p">Geen branche-eis; wel: je wilt het uit handen geven zonder fulltime medewerker.</p>
+    </div>
+    <div class="res-tiles stag">
+      <div class="rtile glass"><div class="v">24/7</div><div class="l">klantcontact dat doorloopt — ook als jij offline bent</div></div>
+      <div class="rtile glass"><div class="v">3</div><div class="l">pijlers: klantenservice, social media &amp; leads</div></div>
+      <div class="rtile glass"><div class="v">€499</div><div class="l">per maand vanaf · bouwen is gratis</div></div>
+    </div>
+    <div class="res-note reveal d1"><span class="b">//</span> of je webshop runt, een bureau leidt of diensten levert — als klantcontact je tijd opeet, past BotBuildr</div>
+  </div>
+</section>
+
+<!-- 07 · HET TIJDVENSTER -->
+<section class="blk" id="tijdvenster" data-screen-label="Het tijdvenster" style="background:var(--bg-sunken);">
+  <div class="wrap two wide-l">
+    <div class="copy reveal">
+      <span class="eyebrow"><span class="num">07 /</span> het tijdvenster</span>
+      <h2 class="sec-h" style="margin-top:22px;">Straks doet iedereen dit. <span class="hl">Jij kunt nu voorlopen.</span></h2>
+      <div class="fomo-list">
+        <div class="fomo-item"><span class="b">01</span><div class="t">Ondernemers die klantcontact nu automatiseren, <b>missen minder leads</b> — en groeien terwijl anderen stilzitten.</div></div>
+        <div class="fomo-item"><span class="b">02</span><div class="t">Over een paar jaar is dit de norm. <span>Wie wacht, loopt straks alleen achter de feiten aan.</span></div></div>
+        <div class="fomo-item"><span class="b">03</span><div class="t">Je bent er <b>vroeg</b> bij. Precies nu is het verschil het grootst — voordat je concurrent het ook doet.</div></div>
+      </div>
+    </div>
+    <div class="curve-wrap glass reveal d1 curve">
+      <div class="curve-cap"><span>// adoptie ai-klantcontact</span><span>marktaandeel</span></div>
+      <svg class="curve-svg" viewBox="0 0 560 360" preserveAspectRatio="xMidYMid meet" aria-label="Adoptiecurve">
+        <line class="curve-grid" x1="40" y1="310" x2="540" y2="310"></line>
+        <line class="curve-grid" x1="40" y1="60" x2="40" y2="310"></line>
+        <path class="curve-area" d="M40,300 C150,292 200,275 270,200 C320,150 360,120 440,108 L440,310 L40,310 Z"></path>
+        <path class="curve-path" pathLength="1" d="M40,300 C150,292 200,275 270,200 C320,150 360,120 440,108"></path>
+        <path class="curve-late" pathLength="1" d="M440,108 C480,100 510,96 540,94"></path>
+        <circle class="curve-dot-ring" cx="150" cy="288" r="16"></circle>
+        <circle class="curve-dot" cx="150" cy="288" r="7"></circle>
+        <line class="curve-conn" x1="150" y1="246" x2="150" y2="270"></line>
+        <text class="curve-lbl" x="150" y="234" text-anchor="middle">jij bent hier</text>
+        <text class="curve-zone" x="250" y="346" text-anchor="middle">↤ voorsprong</text>
+        <text class="curve-axis" x="490" y="346" text-anchor="middle">de norm</text>
+        <text class="curve-axis" x="48" y="74">100%</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · BEZWAREN -->
+<section class="blk" id="bezwaren" data-screen-label="Bezwaren" style="background:var(--bg-sunken);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="num">08 /</span> eerlijke antwoorden</span>
+      <h2 class="sec-h" style="margin-top:22px;">Wat ondernemers ons het vaakst vragen.</h2>
+    </div>
+    <div class="obj-grid stag">
+      <div class="obj glass">
+        <div class="obj-q"><span class="x">✕</span> "Ik wil geen robot-gevoel bij mijn klanten."</div>
+        <div class="obj-a">De AI schrijft in jouw toon en met jouw woorden. Geen script-gevoel — klanten merken vooral dat ze sneller antwoord krijgen.</div>
+      </div>
+      <div class="obj glass">
+        <div class="obj-q"><span class="x">✕</span> "Merken klanten dat het AI is?"</div>
+        <div class="obj-a">Getraind op hoe jij normaal reageert. Twijfelt het systeem? Dan schuift het gesprek door naar jou — geen rare of halv
